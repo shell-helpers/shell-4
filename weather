@@ -1,0 +1,16 @@
+#!/bin/bash
+city="广州"
+wd="$city天气"
+city_file="/tmp/weather.city"
+echo $wd > $city_file 
+wd=`od -t x $city_file |awk '{w=split($0,linedata," ");for (j=2;j<w+1;j++){for (i=7;i>0;i=i-2){if (substr(linedata[j],i,2) != "00") {printf "%%" ;printf toupper(substr(linedata[j],i,2));}}}}'`
+
+echo "$city天气"
+
+content=``
+line=`w3m -dump -no-cookie "http://www.baidu.com/s?wd=$wd" 2>/dev/null | grep -n '^今天' | sed 's/:.*//g'`
+line=`expr $line - 1`
+w3m -dump -no-cookie "http://www.baidu.com/s?wd=$wd" 2>/dev/null | sed '1,'$line'd' | sed '7,$d' | sed '2d' | sed 's/更多城市//g' | sed 's/7天预报//g' | sed 's/|//g'
+t="`env LANG=zh_CN.UTF-8 date +%Y年%m月%d日%H时`"
+echo "现在时间：$t" 
+exit 0

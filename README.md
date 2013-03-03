@@ -15,4 +15,4 @@ shells
 - **11. updateFirefox.sh** *ubuntu更新firefox*
 - **12. weather**   *通过输入城市显示天气情况*
 - **13. wifi.sh**   *ubuntu打开wifi连接(手机)*
-	
+- **14. my.cnf**    *mysql配置文件,设置为中文*	

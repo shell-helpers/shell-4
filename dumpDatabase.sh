@@ -8,7 +8,7 @@ echo '请选择数据库:'
 read database
 echo '请选择数据库操作类型，备份(B) 或者 恢复(R):'
 read operate
-echo '请输入文件目录:'
+echo '请输入文件目录:(eg: /var/www/teacherw/Backup)'
 read dir
 while [ ! -d "$dir" ]
 do
